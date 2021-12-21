@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Receipt :receipts="receipts" :template="1" :print-header="true" />
+    <Receipt :receipt-template="receiptTemplate" :receipts="receipts" :template="1" :print-header="true" />
   </div>
 </template>
 
@@ -14,60 +14,39 @@ export default {
   },
   data() {
     return {
+      receiptTemplate: {
+        "isActive": true,
+        "receiptName": "A4全版面(可折疊郵寄)",
+        "issueUnitName": "樂意捐基金會",
+        "receiptBackgroundUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/14cbd4ac5b89412ca188996842ba3a28.jpg",
+        "logoUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/46b9f8939cbf45fc9a818eeb7530d2da.png",
+        "bigChapterUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/a5988f2c61d14e5d9faef64d7ef312ff.png",
+        "customText1": "佈施的人有福",
+        "customText2": "行善的人快樂",
+        "receiptDisductableShowText": "非扣抵收據",
+        "mailingAddress": "台北市中山北路123號",
+        "contactNumber": "0919246398",
+        "taxIdNumber": "52563493",
+        "registrationNumber": "123",
+        "corporateNumber": "123",
+        "salutation": "先生",
+        "gratitude": "謹此銘謝",
+        "signatureType": "IMG",
+        "signatureName1": "董事長",
+        "signatureValue1": "https://storage.googleapis.com/dona2-dev/receiptTemplate/8965babf2ca34ab3ad1ff7d92cbb754a.png",
+        "id": "1",
+        "template": "123test"
+      },
       receipts: [
         {
-          id: 1,
-          logoUrl: 'https://s3-alpha-sig.figma.com/img/1149/64a0/ff89d31f4998535154f9b3d90d524983?Expires=1639958400&Signature=J37Tqb6iBve7WvusP9szXkBt~IiSl3k3EYkOv0ZjqzYbM5yysHAnalog5Sei7r08EsJatiWKtPVRJRo8zuSqyEicBszbtMjDMtL5qnsP~ZSUGxSRnd45aDviQ4BvIrmZQZTyoP4bBhYTd0bipC5LoHcj3gBCqrELYr7IybBAAUDbdTQa9z1euRGNBLlHb20rYtPC6~TjgSo6jLVrEUCCp9C9UAyRXqqIVe~qLGADHmfDgInNUsYsbcrunrjEn0MAlLjyPCM6Y3tug73ZtURWK4L~yIjLzP~oexxSnuCTioOs4ZuM1jeyQSOxuO~KiqUSCred1iw7qIkEurGKos4Lvg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-          customText1: '自訂文字1',
-          customText2: '自訂文字2',
-          receiptInvoiceType: 'DEDUCTIBLE',
-          receiptDisductableShowText: '不可扣抵收據顯示文字',
-          payerFullName: '收款人全名',
-          salutation: '先生',
-          amount: 2000,
-          gratitude: '感謝語',
-          signatureType: 'TEXT',
-          signatureName1: '簽章1',
-          signatureValue1: '簽章1內容',
-          signatureName2: '簽章2',
-          signatureValue2: '簽章2內容',
-          signatureName3: '簽章3',
-          signatureValue3: '簽章3內容',
-          signatureName4: '簽章4',
-          signatureValue4: '簽章4內容',
-          year: '1/2000 2/2000 3/2000 4/2000',
-          receiptDate: '2020/01/01',
-          issueUnitName: '發票開立單位名稱',
-          mailingAddress: '郵寄地址',
-          contactNumber: '聯絡電話',
-          taxIdNumber: '統一編號',
-          registrationNumber: '核准字號',
-          corporateNumber: '法人證號',
-          bigChapterUrl: 'https://s3-alpha-sig.figma.com/img/1149/64a0/ff89d31f4998535154f9b3d90d524983?Expires=1639958400&Signature=J37Tqb6iBve7WvusP9szXkBt~IiSl3k3EYkOv0ZjqzYbM5yysHAnalog5Sei7r08EsJatiWKtPVRJRo8zuSqyEicBszbtMjDMtL5qnsP~ZSUGxSRnd45aDviQ4BvIrmZQZTyoP4bBhYTd0bipC5LoHcj3gBCqrELYr7IybBAAUDbdTQa9z1euRGNBLlHb20rYtPC6~TjgSo6jLVrEUCCp9C9UAyRXqqIVe~qLGADHmfDgInNUsYsbcrunrjEn0MAlLjyPCM6Y3tug73ZtURWK4L~yIjLzP~oexxSnuCTioOs4ZuM1jeyQSOxuO~KiqUSCred1iw7qIkEurGKos4Lvg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'
-        },
-        {
-          id: 2,
-          logoUrl: 'https://s3-alpha-sig.figma.com/img/1149/64a0/ff89d31f4998535154f9b3d90d524983?Expires=1639958400&Signature=J37Tqb6iBve7WvusP9szXkBt~IiSl3k3EYkOv0ZjqzYbM5yysHAnalog5Sei7r08EsJatiWKtPVRJRo8zuSqyEicBszbtMjDMtL5qnsP~ZSUGxSRnd45aDviQ4BvIrmZQZTyoP4bBhYTd0bipC5LoHcj3gBCqrELYr7IybBAAUDbdTQa9z1euRGNBLlHb20rYtPC6~TjgSo6jLVrEUCCp9C9UAyRXqqIVe~qLGADHmfDgInNUsYsbcrunrjEn0MAlLjyPCM6Y3tug73ZtURWK4L~yIjLzP~oexxSnuCTioOs4ZuM1jeyQSOxuO~KiqUSCred1iw7qIkEurGKos4Lvg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-          customText1: '自訂文字1',
-          customText2: '自訂文字2',
-          date: '2018-01-02',
-          amount: 200,
-          receiptInvoiceType: 'NONDEDUCTIBLE',
-          signatureType: 'IMG',
-          signatureName1: '簽章1',
-          signatureValue1: 'https://s3-alpha-sig.figma.com/img/1149/64a0/ff89d31f4998535154f9b3d90d524983?Expires=1639958400&Signature=J37Tqb6iBve7WvusP9szXkBt~IiSl3k3EYkOv0ZjqzYbM5yysHAnalog5Sei7r08EsJatiWKtPVRJRo8zuSqyEicBszbtMjDMtL5qnsP~ZSUGxSRnd45aDviQ4BvIrmZQZTyoP4bBhYTd0bipC5LoHcj3gBCqrELYr7IybBAAUDbdTQa9z1euRGNBLlHb20rYtPC6~TjgSo6jLVrEUCCp9C9UAyRXqqIVe~qLGADHmfDgInNUsYsbcrunrjEn0MAlLjyPCM6Y3tug73ZtURWK4L~yIjLzP~oexxSnuCTioOs4ZuM1jeyQSOxuO~KiqUSCred1iw7qIkEurGKos4Lvg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-          signatureName2: '簽章2',
-          signatureValue2: 'https://s3-alpha-sig.figma.com/img/1149/64a0/ff89d31f4998535154f9b3d90d524983?Expires=1639958400&Signature=J37Tqb6iBve7WvusP9szXkBt~IiSl3k3EYkOv0ZjqzYbM5yysHAnalog5Sei7r08EsJatiWKtPVRJRo8zuSqyEicBszbtMjDMtL5qnsP~ZSUGxSRnd45aDviQ4BvIrmZQZTyoP4bBhYTd0bipC5LoHcj3gBCqrELYr7IybBAAUDbdTQa9z1euRGNBLlHb20rYtPC6~TjgSo6jLVrEUCCp9C9UAyRXqqIVe~qLGADHmfDgInNUsYsbcrunrjEn0MAlLjyPCM6Y3tug73ZtURWK4L~yIjLzP~oexxSnuCTioOs4ZuM1jeyQSOxuO~KiqUSCred1iw7qIkEurGKos4Lvg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-          signatureName3: '簽章3',
-          signatureValue3: 'https://s3-alpha-sig.figma.com/img/1149/64a0/ff89d31f4998535154f9b3d90d524983?Expires=1639958400&Signature=J37Tqb6iBve7WvusP9szXkBt~IiSl3k3EYkOv0ZjqzYbM5yysHAnalog5Sei7r08EsJatiWKtPVRJRo8zuSqyEicBszbtMjDMtL5qnsP~ZSUGxSRnd45aDviQ4BvIrmZQZTyoP4bBhYTd0bipC5LoHcj3gBCqrELYr7IybBAAUDbdTQa9z1euRGNBLlHb20rYtPC6~TjgSo6jLVrEUCCp9C9UAyRXqqIVe~qLGADHmfDgInNUsYsbcrunrjEn0MAlLjyPCM6Y3tug73ZtURWK4L~yIjLzP~oexxSnuCTioOs4ZuM1jeyQSOxuO~KiqUSCred1iw7qIkEurGKos4Lvg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-          signatureName4: '簽章4',
-          signatureValue4: 'https://s3-alpha-sig.figma.com/img/1149/64a0/ff89d31f4998535154f9b3d90d524983?Expires=1639958400&Signature=J37Tqb6iBve7WvusP9szXkBt~IiSl3k3EYkOv0ZjqzYbM5yysHAnalog5Sei7r08EsJatiWKtPVRJRo8zuSqyEicBszbtMjDMtL5qnsP~ZSUGxSRnd45aDviQ4BvIrmZQZTyoP4bBhYTd0bipC5LoHcj3gBCqrELYr7IybBAAUDbdTQa9z1euRGNBLlHb20rYtPC6~TjgSo6jLVrEUCCp9C9UAyRXqqIVe~qLGADHmfDgInNUsYsbcrunrjEn0MAlLjyPCM6Y3tug73ZtURWK4L~yIjLzP~oexxSnuCTioOs4ZuM1jeyQSOxuO~KiqUSCred1iw7qIkEurGKos4Lvg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-        },
-        {
-          id: 3,
-          logoUrl: 'https://s3-alpha-sig.figma.com/img/1149/64a0/ff89d31f4998535154f9b3d90d524983?Expires=1639958400&Signature=J37Tqb6iBve7WvusP9szXkBt~IiSl3k3EYkOv0ZjqzYbM5yysHAnalog5Sei7r08EsJatiWKtPVRJRo8zuSqyEicBszbtMjDMtL5qnsP~ZSUGxSRnd45aDviQ4BvIrmZQZTyoP4bBhYTd0bipC5LoHcj3gBCqrELYr7IybBAAUDbdTQa9z1euRGNBLlHb20rYtPC6~TjgSo6jLVrEUCCp9C9UAyRXqqIVe~qLGADHmfDgInNUsYsbcrunrjEn0MAlLjyPCM6Y3tug73ZtURWK4L~yIjLzP~oexxSnuCTioOs4ZuM1jeyQSOxuO~KiqUSCred1iw7qIkEurGKos4Lvg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
-          date: '2018-01-03',
-          amount: 300
+          donarName: '捐款人全名', //捐款人姓名
+          receiptAmountCovInWords: '叁千元', //捐款金額轉大寫
+          byYearItmeStr: '1/2000,1/1000,1/60', //年開資料
+          receiptDateStr: "2021-12-13", //收據開立日期
+          receiptNumber: "OPG21124466", //收據號碼
+          reissueCount: "0", //補發次數,
+          receipient: "收件人全名",
+          receipientAddressStr: "收件人地址"
         }
       ]
     }
