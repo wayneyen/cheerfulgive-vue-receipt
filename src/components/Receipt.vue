@@ -7,11 +7,15 @@
     </header>
 
     <main>
-      <div v-for="receipt, index in receipts" :key="index" class="receipt-page" :style="{ margin: margin }">
+      <div v-for="receipt, index in receipts"
+        :key="index"
+        class="receipt-page"
+        :style="{ margin: margin, display: displayValue(receipt.receiptTypeCode) }">
         <!-- 寄件人 -->
         <div class="absolute" :style="positions.sender">
-          <div>{{ receiptTemplate.mailingAddress }}</div>
-          <div>{{ receiptTemplate.issueUnitName }}</div>
+          <div v-if="receipt.ownerAddress">{{ receipt.ownerAddress }}</div>
+          <div v-if="receipt.ownerPhone">{{ receipt.ownerPhone }}</div>
+          <div v-if="receipt.ownerName">{{ receipt.ownerName }}</div>
         </div>
 
         <!-- 收件人 -->
@@ -42,13 +46,13 @@
         </div>
 
         <!-- 捐款人標籤 -->
-        <div class="absolute" :style="positions.donarNameLabel">
+        <div class="absolute" :style="positions.donorNameLabel">
           茲收到捐款人
         </div>
 
         <!-- 捐款人全名、稱謂 -->
-        <div class="receipt-payer absolute" :style="positions.donarName">
-          <span>{{ receipt.donarName }}</span>
+        <div class="receipt-payer absolute" :style="positions.donorName">
+          <span>{{ receipt.donorName }}</span>
           <span>{{ receiptTemplate.salutation }}</span>
         </div>
 
@@ -77,19 +81,29 @@
           </div>
         </div>
 
-        <!-- 開立單位 -->
-        <div class="absolute" :style="positions.unit">
-          <div class="receipt-issue-unit-name">{{ receiptTemplate.issueUnitName }}</div>
-          <div>{{ receiptTemplate.mailingAddress }}</div>
-          <div>{{ receiptTemplate.contactNumber }}</div>
-          <div>{{ receiptTemplate.taxIdNumber }}</div>
-          <div>{{ receiptTemplate.registrationNumber }}</div>
-          <div>{{ receiptTemplate.corporateNumber }}</div>
-        </div>
-
         <!-- 大章 -->
         <div v-if="receiptTemplate.bigChapterUrl" class="receipt-big-chapter absolute" :style="positions.bigChapter">
           <img :src="receiptTemplate.bigChapterUrl">
+        </div>
+
+        <!-- 開立單位 -->
+        <div class="absolute" :style="positions.unit">
+          <div class="receipt-issue-unit-name">{{ receiptTemplate.issueUnitName }}</div>
+          <div v-if="receiptTemplate.mailingAddress">
+            通訊地址：{{ receiptTemplate.mailingAddress }}
+          </div>
+          <div v-if="receiptTemplate.contactNumber">
+            電話：{{ receiptTemplate.contactNumber }}
+          </div>
+          <div v-if="receiptTemplate.taxIdNumber">
+            統一編號：{{ receiptTemplate.taxIdNumber }}
+          </div>
+          <div v-if="receiptTemplate.registrationNumber">
+            核准字號：{{ receiptTemplate.registrationNumber }}
+          </div>
+          <div v-if="receiptTemplate.corporateNumber">
+            法人證號：{{ receiptTemplate.corporateNumber }}
+          </div>
         </div>
 
         <!-- 收據號碼 -->
@@ -99,13 +113,13 @@
         </div>
 
         <!-- 年開 -->
-        <div v-if="receipt.byYearItmeStr" class="absolute" :style="positions.byYearItmeStr">
+        <div v-if="receipt.receiptTypeCode === 'BY_YEAR'" class="absolute" :style="positions.byYearItmeStr">
           年開資料：{{ receipt.byYearItmeStr }}
         </div>
 
-        <!-- 收據開立日期 -->
+        <!-- 收據日期 -->
         <div class="absolute" :style="positions.receiptDateStr">
-          收據開立日期：{{ receipt.receiptDateStr }}
+          收據日期：{{ receipt.receiptDateStr }}
         </div>
 
       </div>
@@ -156,8 +170,8 @@ export default {
             logo: { top: '416px', left: '72px', width: '64px', height: '64px' },
             customText: { top: '420px', left: '143px', fontSize: '22px', lineHeight: '26px' },
             receiptDisductableShowText: { top: '504px', left: '72px', fontSize: '16px' },
-            donarNameLabel: { top: '529px', left: '72px', fontSize: '16px' },
-            donarName: { top: '554px', left: '72px', fontSize: '16px' },
+            donorNameLabel: { top: '529px', left: '72px', fontSize: '16px' },
+            donorName: { top: '554px', left: '72px', fontSize: '16px' },
             salutation: { top: '579px', left: '72px', fontSize: '16px' },
             receiptAmountCovInWords: { top: '583px', left: '72px', fontSize: '16px' },
             gratitude: { top: '612px', left: '72px', fontSize: '16px' },
@@ -174,6 +188,11 @@ export default {
       }
       return {}
     },
+  },
+  methods: {
+    displayValue(value) {
+      return (value === 'BY_TIME' || value === 'BY_YEAR') ? 'block' : 'none'
+    }
   }
 
 }
@@ -186,7 +205,7 @@ export default {
 
 @media print {
   @page {
-    size: A4 portrait;
+    size: A4 portrait !important;
     margin: 0 !important;
   }
   .no-print, .no-print *
@@ -195,7 +214,7 @@ export default {
   }
 
   .receipt-page {
-    margin: 0 auto;
+    margin: 0 !important;
     border: none !important;
     box-shadow: none !important;
   }
@@ -292,6 +311,7 @@ export default {
 
 .receipt-issue-unit-name {
   font-size: 24px;
+  font-weight: 800;
   font-family: 'cwTeXFangSong', 'cwTeXKai', 'Noto Serif';
 }
 .receipt-big-chapter img {

@@ -18,7 +18,7 @@ export default {
         "isActive": true,
         "receiptName": "A4全版面(可折疊郵寄)",
         "issueUnitName": "樂意捐基金會",
-        "receiptBackgroundUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/14cbd4ac5b89412ca188996842ba3a28.jpg",
+        "receiptBackgroundUrl": "https://www.kaspersky.com/siterenderer/_next/static/images/assets/map.png",
         "logoUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/46b9f8939cbf45fc9a818eeb7530d2da.png",
         "bigChapterUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/a5988f2c61d14e5d9faef64d7ef312ff.png",
         "customText1": "佈施的人有福",
@@ -39,14 +39,18 @@ export default {
       },
       receipts: [
         {
-          donarName: '捐款人全名', //捐款人姓名
+          donorName: '捐款人全名', //捐款人姓名
           receiptAmountCovInWords: '叁千元', //捐款金額轉大寫
           byYearItmeStr: '1/2000,1/1000,1/60', //年開資料
           receiptDateStr: "2021-12-13", //收據開立日期
           receiptNumber: "OPG21124466", //收據號碼
           reissueCount: "0", //補發次數,
+          ownerName: "寄件人名稱",
+          ownerAddress: "寄件人地址",
+          ownerPhone: "寄件人電話",
           receipient: "收件人全名",
-          receipientAddressStr: "收件人地址"
+          receipientAddressStr: "收件人地址",
+          receiptTypeCode: "BY_TIME"
         }
       ]
     }

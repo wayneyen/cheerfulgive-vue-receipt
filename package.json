@@ -1,7 +1,7 @@
 {
   "name": "cheerfulgive-vue-receipt",
   "description": "樂易捐收據套印",
-  "version": "0.2.1",
+  "version": "0.2.4",
   "private": false,
   "repository": {
     "type": "git",
@@ -46,8 +46,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "dependencies": {
-    "user": "^0.0.0"
-  }
+  ]
 }
