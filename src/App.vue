@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Receipt :receipt-template="receiptTemplate" :receipts="receipts" :template="1" :print-header="true" />
+    <Receipt
+      :receipt-template="receiptTemplate"
+      :receipts="receipts"
+      :template="1"
+      :print-header="true" />
   </div>
 </template>
 
@@ -18,8 +22,8 @@ export default {
         "isActive": true,
         "receiptName": "A4全版面(可折疊郵寄)",
         "issueUnitName": "樂意捐基金會",
-        "receiptBackgroundUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/a87e635945d74e2eaaf504068e76353b.png",
-        "logoUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/46b9f8939cbf45fc9a818eeb7530d2da.png",
+        "receiptBackgroundUrl": "https://img.lovepik.com/element/40154/9249.png_1200.png",
+        "logoUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/7d5f7ce36f014de480d0fe607b3cf652.png",
         "bigChapterUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/a5988f2c61d14e5d9faef64d7ef312ff.png",
         "customText1": "佈施的人有福",
         "customText2": "行善的人快樂",

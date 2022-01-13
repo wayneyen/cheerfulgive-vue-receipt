@@ -11,6 +11,13 @@
         :key="index"
         class="receipt-page"
         :style="{ margin: margin, display: displayValue(receipt.receiptTypeCode) }">
+
+        <!-- 浮水印 (固定位置) -->
+        <img v-if="receiptTemplate.receiptBackgroundUrl"
+          :src="receiptTemplate.receiptBackgroundUrl"
+          :style="positions.receiptWatermark"
+          class="receipt-watermark">
+
         <!-- 寄件人 -->
         <div class="absolute" :style="positions.sender">
           <div v-if="receipt.ownerAddress">{{ receipt.ownerAddress }}</div>
@@ -26,15 +33,12 @@
           <div>{{ receipt.receipient }}</div>
         </div>
 
-        <!-- 浮水印 (固定位置) -->
-        <img v-if="receiptTemplate.receiptBackgroundUrl" :src="receiptTemplate.receiptBackgroundUrl" class="receipt-watermark">
-
         <!-- 折線 -->
-        <hr v-if="template === 1" class="hr-dashed" style="top: 33.33%" />
+        <hr v-if="template === 1 || template === 2" class="hr-dashed" style="top: 33.33%" />
         <hr v-if="template === 1" class="hr-dashed" style="top: 66.66%" />
 
         <!-- Logo -->
-        <img :src="receiptTemplate.logoUrl" class="absolute" :style="positions.logo">
+        <img :src="receiptTemplate.logoUrl" class="absolute receipt-logo" :style="positions.logo">
 
         <!-- 自訂標頭文字 -->
         <div class="absolute" :style="positions.customText">
@@ -121,7 +125,7 @@
 
         <!-- 收據日期 -->
         <div class="absolute" :style="positions.receiptDateStr">
-          收據日期：{{ receipt.receiptDateStr }}
+          {{ receipt.receiptDateStr }}
         </div>
 
       </div>
@@ -174,6 +178,7 @@ export default {
         // A4全版面(可折疊郵寄)
         case 1:
           return {
+            receiptWatermark: { top: '33.33%'}, // 水印
             sender: { top: '30px', left: '40px', fontSize: '16px', fontWeight: '500' }, // 寄件人
             receipient: { top: '170px', left: '416px', fontSize: '16px', fontWeight: '500' }, // 收件人
             logo: { top: '404px', left: '60px', width: '60px', height: '60px' }, // 圖示
@@ -185,11 +190,37 @@ export default {
             gratitude: { top: '590px', left: '60px', fontSize: '14px', fontWeight: '600' }, // 感謝語
             signature: { top: '637px', left: '60px', fontSize: '14px' }, // 簽章
             byYearItemStr: { top: '778px', left: '60px', fontSize: '14px' }, // 年開資料
-            receiptDateStr: { top: '804px', left: '60px', fontSize: '14px' },
+            receiptDateStr: {
+              top: this.receipt && this.receipt.receiptTypeCode === 'BY_YEAR' ? '804px': '788px',
+              left: '60px',
+              fontSize: '14px'
+            },
             unitTitle: { top: '403px', left: '397px', fontSize: '24px', fontWeight: '700' }, // 開立單位標題
             unitContent: { top: '441px', left: '397px', fontSize: '16px', lineHeight: '1.8', transform : 'scale(.5)', transformOrigin: 'top left' }, // 開立單位資料
             receiptNumber: { top: '526px', left: '397px', fontSize: '14px' }, // 收據號碼
             bigChapter: { top: '441px', left: '658px' }, // 大章
+          }
+
+        // A4半版面
+        case 2:
+          return {
+            receiptWatermark: { top: '0'}, // 水印
+            sender: { top: '30px', left: '40px', fontSize: '16px', fontWeight: '500', display: 'none' }, // 寄件人
+            receipient: { top: '189px', left: '397px', fontSize: '14px', fontWeight: '500' }, // 收件人
+            logo: { top: '31px', left: '60px', width: '60px', height: '60px' }, // 圖示
+            customText: { top: '41px', left: '140px', fontSize: '18px', lineHeight: '26px' }, // 自訂文字
+            receiptDisductableShowText: { top: '121px', left: '60px', fontSize: '12px' }, // 扣抵文字
+            donorNameLabel: { top: '142px', left: '60px', fontSize: '14px', fontWeight: '600' }, // 捐款人標籤
+            donorName: { top: '169px', left: '60px', fontSize: '16px' }, // 捐款人
+            receiptAmountCovInWords: { top: '190px', left: '60px', fontSize: '16px' }, // 捐款金額
+            gratitude: { top: '217px', left: '60px', fontSize: '14px', fontWeight: '600' }, // 感謝語
+            signature: { top: '264px', left: '60px', fontSize: '14px' }, // 簽章
+            byYearItemStr: { top: '331px', left: '60px', fontSize: '14px' }, // 年開資料
+            receiptDateStr: { top: '331px', left: '397px', fontSize: '14px' },
+            unitTitle: { top: '30px', left: '397px', fontSize: '24px', fontWeight: '700' }, // 開立單位標題
+            unitContent: { top: '68px', left: '397px', fontSize: '16px', lineHeight: '1.8', transform : 'scale(.5)', transformOrigin: 'top left' }, // 開立單位資料
+            receiptNumber: { top: '153px', left: '397px', fontSize: '14px' }, // 收據號碼
+            bigChapter: { top: '68px', left: '658px' }, // 大章
           }
 
         default:
@@ -305,10 +336,14 @@ export default {
 /* 浮水印 */
 .receipt-watermark {
   position: absolute;
-  top: 33.33%;
   left: 0;
   width: 100%;
   height: 33.33%;
+  object-fit: contain;
+  z-index: 0;
+}
+
+.receipt-logo {
   object-fit: contain;
 }
 .receipt-payer span+span {

@@ -67,7 +67,9 @@ export default {
           ownerAddress: "寄件人地址",
           ownerPhone: "寄件人電話",
           receipient: "收件人全名",
-          receipientAddressStr: "收件人地址",
+          receipientAddressStr: "收件人郵遞區號+縣市+鄉鎮市區",
+          receipientAddressStr1: "收件人地址1",
+          receipientAddressStr2: "收件人地址2",
           receiptTypeCode: "BY_TIME"
         }
       ]
