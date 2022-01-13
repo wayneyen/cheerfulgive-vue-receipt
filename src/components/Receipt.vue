@@ -2,7 +2,7 @@
   <div class="receipt">
 
     <header v-if="printHeader" class="receipt-header no-print">
-      <button onclick="self.close()">&LT; 返回</button>
+      <button onclick="history.back()">&LT; 返回</button>
       <button onclick="self.print()">列印</button>
     </header>
 
@@ -109,12 +109,12 @@
         <!-- 收據號碼 -->
         <div class="absolute" :style="positions.receiptNumber">
           收據號碼 {{ receipt.receiptNumber }}
-          <span v-if="receipt.reissueCount > 0">補發資料</span>
+          <span v-if="isReissuedPrint">補發</span>
         </div>
 
         <!-- 年開 -->
-        <div v-if="receipt.receiptTypeCode === 'BY_YEAR'" class="absolute" :style="positions.byYearItmeStr">
-          年開資料：{{ receipt.byYearItmeStr }}
+        <div v-if="receipt.receiptTypeCode === 'BY_YEAR'" class="absolute" :style="positions.byYearItemStr">
+          年開資料：{{ receipt.byYearItemStr }}
         </div>
 
         <!-- 收據日期 -->
@@ -153,6 +153,11 @@ export default {
     margin: {
       type: String,
       default: '15px auto'
+    },
+    // 補發資料
+    isReissuedPrint: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -176,7 +181,7 @@ export default {
             receiptAmountCovInWords: { top: '583px', left: '72px', fontSize: '16px' },
             gratitude: { top: '612px', left: '72px', fontSize: '16px' },
             signature: { top: '638px', left: '72px', fontSize: '16px' },
-            byYearItmeStr: { top: '689px', left: '72px', fontSize: '16px' },
+            byYearItemStr: { top: '689px', left: '72px', fontSize: '16px' },
             receiptDateStr: { top: '689px', left: '406px', fontSize: '16px' },
             unit: { top: '417px', left: '406px', fontSize: '14px' },
             receiptNumber: { top: '555px', left: '406px', fontSize: '16px' },
@@ -189,6 +194,12 @@ export default {
       return {}
     },
   },
+  created() {
+    document.body.classList.add('print-body')
+  },
+  destroyed() {
+    document.body.classList.remove('print-body')
+  },
   methods: {
     displayValue(value) {
       return (value === 'BY_TIME' || value === 'BY_YEAR') ? 'block' : 'none'
@@ -197,6 +208,15 @@ export default {
 
 }
 </script>
+
+<style>
+@media print {
+  .print-body {
+    max-width: initial !important;
+    min-width: initial !important;
+  }
+}
+</style>
 
 <style scoped>
 @import url(//fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
@@ -207,7 +227,9 @@ export default {
   @page {
     size: A4 portrait !important;
     margin: 0 !important;
+    background-color: #fff !important;
   }
+
   .no-print, .no-print *
   {
     display: none !important;
@@ -248,6 +270,7 @@ export default {
   width: 21cm;
   height: 29cm;
   border: 1px solid #ddd;
+  background-color: #fff !important;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   box-sizing: content-box;
   overflow: hidden;

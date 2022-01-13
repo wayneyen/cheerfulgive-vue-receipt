@@ -41,7 +41,7 @@ export default {
         {
           donorName: '捐款人全名', //捐款人姓名
           receiptAmountCovInWords: '叁千元', //捐款金額轉大寫
-          byYearItmeStr: '1/2000,1/1000,1/60', //年開資料
+          byYearItemStr: '1/2000,1/1000,1/60', //年開資料
           receiptDateStr: "2021-12-13", //收據開立日期
           receiptNumber: "OPG21124466", //收據號碼
           reissueCount: "0", //補發次數,
