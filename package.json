@@ -3,6 +3,7 @@
   "description": "樂易捐收據套印",
   "version": "0.3.2",
   "private": false,
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/wayneyen/cheerfulgive-vue-receipt"

@@ -18,7 +18,7 @@ export default {
         "isActive": true,
         "receiptName": "A4全版面(可折疊郵寄)",
         "issueUnitName": "樂意捐基金會",
-        "receiptBackgroundUrl": "https://www.kaspersky.com/siterenderer/_next/static/images/assets/map.png",
+        "receiptBackgroundUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/a87e635945d74e2eaaf504068e76353b.png",
         "logoUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/46b9f8939cbf45fc9a818eeb7530d2da.png",
         "bigChapterUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/a5988f2c61d14e5d9faef64d7ef312ff.png",
         "customText1": "佈施的人有福",
@@ -50,6 +50,8 @@ export default {
           ownerPhone: "寄件人電話",
           receipient: "收件人全名",
           receipientAddressStr: "收件人地址",
+          receipientAddressStr1: "收件人地址1",
+          receipientAddressStr2: "收件人地址2",
           receiptTypeCode: "BY_TIME"
         }
       ]

@@ -20,7 +20,9 @@
 
         <!-- 收件人 -->
         <div class="absolute" :style="positions.receipient">
-          <div>{{ receipt.receipientAddressStr }}</div>
+          <div v-if="receipt.receipientAddressStr">{{ receipt.receipientAddressStr }}</div>
+          <div v-if="receipt.receipientAddressStr1">{{ receipt.receipientAddressStr1 }}</div>
+          <div v-if="receipt.receipientAddressStr2">{{ receipt.receipientAddressStr2 }}</div>
           <div>{{ receipt.receipient }}</div>
         </div>
 
@@ -58,7 +60,7 @@
 
         <!-- 捐款金額 -->
         <div class="absolute" :style="positions.receiptAmountCovInWords">
-          捐助&nbsp;&nbsp;新臺幣 {{ receipt.receiptAmountCovInWords }} 元整
+          捐助&nbsp;&nbsp;新臺幣&nbsp;&nbsp;&nbsp;&nbsp;{{ receipt.receiptAmountCovInWords }}&nbsp;&nbsp;整
         </div>
 
         <!-- 感謝語 -->
@@ -87,8 +89,8 @@
         </div>
 
         <!-- 開立單位 -->
-        <div class="absolute" :style="positions.unit">
-          <div class="receipt-issue-unit-name">{{ receiptTemplate.issueUnitName }}</div>
+        <div class="absolute" :style="positions.unitTitle" >{{ receiptTemplate.issueUnitName }}</div>
+        <div class="absolute" :style="positions.unitContent">
           <div v-if="receiptTemplate.mailingAddress">
             通訊地址：{{ receiptTemplate.mailingAddress }}
           </div>
@@ -166,26 +168,28 @@ export default {
     }
   },
   computed: {
+    // 元素座標由此設置 (style)
     positions () {
       switch (this.template) {
+        // A4全版面(可折疊郵寄)
         case 1:
           return {
-            sender: { top: '43px', left: '55px', fontSize: '24px'},
-            receipient: { top: '167px', left: '407px', fontSize: '24px'},
-            logo: { top: '416px', left: '72px', width: '64px', height: '64px' },
-            customText: { top: '420px', left: '143px', fontSize: '22px', lineHeight: '26px' },
-            receiptDisductableShowText: { top: '504px', left: '72px', fontSize: '16px' },
-            donorNameLabel: { top: '529px', left: '72px', fontSize: '16px' },
-            donorName: { top: '554px', left: '72px', fontSize: '16px' },
-            salutation: { top: '579px', left: '72px', fontSize: '16px' },
-            receiptAmountCovInWords: { top: '583px', left: '72px', fontSize: '16px' },
-            gratitude: { top: '612px', left: '72px', fontSize: '16px' },
-            signature: { top: '638px', left: '72px', fontSize: '16px' },
-            byYearItemStr: { top: '689px', left: '72px', fontSize: '16px' },
-            receiptDateStr: { top: '689px', left: '406px', fontSize: '16px' },
-            unit: { top: '417px', left: '406px', fontSize: '14px' },
-            receiptNumber: { top: '555px', left: '406px', fontSize: '16px' },
-            bigChapter: { top: '442px', left: '644px' },
+            sender: { top: '30px', left: '40px', fontSize: '16px', fontWeight: '500' }, // 寄件人
+            receipient: { top: '170px', left: '416px', fontSize: '16px', fontWeight: '500' }, // 收件人
+            logo: { top: '404px', left: '60px', width: '60px', height: '60px' }, // 圖示
+            customText: { top: '414px', left: '140px', fontSize: '18px', lineHeight: '26px' }, // 自訂文字
+            receiptDisductableShowText: { top: '494px', left: '60px', fontSize: '12px' }, // 扣抵文字
+            donorNameLabel: { top: '515px', left: '60px', fontSize: '14px', fontWeight: '600' }, // 捐款人標籤
+            donorName: { top: '542px', left: '60px', fontSize: '16px' }, // 捐款人
+            receiptAmountCovInWords: { top: '563px', left: '60px', fontSize: '16px' }, // 捐款金額
+            gratitude: { top: '590px', left: '60px', fontSize: '14px', fontWeight: '600' }, // 感謝語
+            signature: { top: '637px', left: '60px', fontSize: '14px' }, // 簽章
+            byYearItemStr: { top: '778px', left: '60px', fontSize: '14px' }, // 年開資料
+            receiptDateStr: { top: '804px', left: '60px', fontSize: '14px' },
+            unitTitle: { top: '403px', left: '397px', fontSize: '24px', fontWeight: '700' }, // 開立單位標題
+            unitContent: { top: '441px', left: '397px', fontSize: '16px', lineHeight: '1.8', transform : 'scale(.5)', transformOrigin: 'top left' }, // 開立單位資料
+            receiptNumber: { top: '526px', left: '397px', fontSize: '14px' }, // 收據號碼
+            bigChapter: { top: '441px', left: '658px' }, // 大章
           }
 
         default:
@@ -219,9 +223,8 @@ export default {
 </style>
 
 <style scoped>
-@import url(//fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
-@import url(//fonts.googleapis.com/earlyaccess/cwtexkai.css);
-@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 
 @media print {
   @page {
@@ -261,14 +264,14 @@ export default {
 
 /* 收據容器 */
 .receipt {
-  font-family: 'Noto Sans TC';
+  font-family: Roboto, 'Noto Sans TC';
 }
 
 /* 收據大小 A4 */
 .receipt-page {
   position: relative;
   width: 21cm;
-  height: 29cm;
+  height: 29.5cm;
   border: 1px solid #ddd;
   background-color: #fff !important;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -309,7 +312,7 @@ export default {
   object-fit: contain;
 }
 .receipt-payer span+span {
-  margin-left: 40px;
+  margin-left: 20px;
 }
 .receipt-signature {
   display: flex;
@@ -335,7 +338,7 @@ export default {
 .receipt-issue-unit-name {
   font-size: 24px;
   font-weight: 800;
-  font-family: 'cwTeXFangSong', 'cwTeXKai', 'Noto Serif';
+  /* font-family: 'cwTeXFangSong', 'cwTeXKai', 'Noto Serif'; */
 }
 .receipt-big-chapter img {
   width: 76px;
