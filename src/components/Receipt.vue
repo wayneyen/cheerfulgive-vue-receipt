@@ -125,7 +125,7 @@
 
         <!-- 收據日期 -->
         <div class="absolute" :style="positions.receiptDateStr">
-          {{ receipt.receiptDateStr }}
+          收據日期：{{ receipt.receiptDateStr }}
         </div>
 
       </div>
@@ -201,7 +201,7 @@ export default {
             bigChapter: { top: '441px', left: '658px' }, // 大章
           }
 
-        // A4半版面
+        // 1/3版面
         case 2:
           return {
             receiptWatermark: { top: '0'}, // 水印

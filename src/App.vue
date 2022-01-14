@@ -3,7 +3,7 @@
     <Receipt
       :receipt-template="receiptTemplate"
       :receipts="receipts"
-      :template="1"
+      :template="2"
       :print-header="true" />
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
         "isActive": true,
         "receiptName": "A4全版面(可折疊郵寄)",
         "issueUnitName": "樂意捐基金會",
-        "receiptBackgroundUrl": "https://img.lovepik.com/element/40154/9249.png_1200.png",
+        "receiptBackgroundUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/7c4a5025627c466cb570a08d2c04fa77.png",
         "logoUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/7d5f7ce36f014de480d0fe607b3cf652.png",
         "bigChapterUrl": "https://storage.googleapis.com/dona2-dev/receiptTemplate/a5988f2c61d14e5d9faef64d7ef312ff.png",
         "customText1": "佈施的人有福",
