@@ -12,6 +12,7 @@ npm i cheerfulgive-vue-receipt
 * Number template: 模板版型
 * String margin: 預覽時的邊距(預設為 15px auto)
 * Boolean print-header: 是否有列印工具列
+* Boolean is-reissued-print: 是否為補印
 
 ## 使用範例
 
@@ -21,6 +22,7 @@ npm i cheerfulgive-vue-receipt
     :receipt-template="receiptTemplate"
     :receipts="receipts"
     :template="1"
+    :is-reissued-print="false"
     margin="0"
     :print-header="true" />
 </template>
@@ -62,7 +64,6 @@ export default {
           byYearItemStr: '1/2000,1/1000,1/60', //年開資料
           receiptDateStr: "2021-12-13", //收據開立日期
           receiptNumber: "OPG21124466", //收據號碼
-          reissueCount: "0", //補發次數,
           ownerName: "寄件人名稱",
           ownerAddress: "寄件人地址",
           ownerPhone: "寄件人電話",
