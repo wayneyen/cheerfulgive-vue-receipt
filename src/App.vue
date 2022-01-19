@@ -3,7 +3,8 @@
     <Receipt
       :receipt-template="receiptTemplate"
       :receipts="receipts"
-      :template="2"
+      :template="1"
+      :show-salutation="false"
       :print-header="true" />
   </div>
 </template>
@@ -38,6 +39,12 @@ export default {
         "signatureType": "IMG",
         "signatureName1": "董事長",
         "signatureValue1": "https://storage.googleapis.com/dona2-dev/receiptTemplate/8965babf2ca34ab3ad1ff7d92cbb754a.png",
+        "signatureName2": "董事長",
+        "signatureValue2": "https://storage.googleapis.com/dona2-dev/receiptTemplate/8965babf2ca34ab3ad1ff7d92cbb754a.png",
+        "signatureName3": "董事長",
+        "signatureValue3": "https://storage.googleapis.com/dona2-dev/receiptTemplate/8965babf2ca34ab3ad1ff7d92cbb754a.png",
+        "signatureName4": "董事長",
+        "signatureValue4": "https://storage.googleapis.com/dona2-dev/receiptTemplate/8965babf2ca34ab3ad1ff7d92cbb754a.png",
         "id": "1",
         "template": "123test"
       },
