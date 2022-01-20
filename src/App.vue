@@ -4,7 +4,6 @@
       :receipt-template="receiptTemplate"
       :receipts="receipts"
       :template="1"
-      :show-salutation="false"
       :print-header="true" />
   </div>
 </template>
@@ -51,6 +50,7 @@ export default {
       receipts: [
         {
           donorName: '捐款人全名', //捐款人姓名
+          donorType: 'Personal', //捐款人類型
           receiptAmountCovInWords: '叁千元', //捐款金額轉大寫
           byYearItemStr: '1/2000,1/1000,1/60', //年開資料
           receiptDateStr: "2021-12-13", //收據開立日期

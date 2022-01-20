@@ -13,7 +13,6 @@ npm i cheerfulgive-vue-receipt
 * String margin: 預覽時的邊距(預設為 15px auto)
 * Boolean print-header: 是否有列印工具列
 * Boolean is-reissued-print: 是否為補印
-* Boolean show-salutation 是否顯示稱謂
 
 ## 使用範例
 

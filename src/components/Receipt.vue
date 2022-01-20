@@ -59,7 +59,7 @@
         <!-- 捐款人全名、稱謂 -->
         <div class="receipt-payer absolute" :style="positions.donorName">
           <span>{{ receipt.donorName }}</span>
-          <span v-if="showSalutation">{{ receiptTemplate.salutation }}</span>
+          <span v-if="receipt.donorType !== 'Corporate'">{{ receiptTemplate.salutation }}</span>
         </div>
 
         <!-- 捐款金額 -->
@@ -164,12 +164,7 @@ export default {
     isReissuedPrint: {
       type: Boolean,
       default: false
-    },
-    // 是否顯示捐款人稱謂
-    showSalutation: {
-      type: Boolean,
-      default: true
-    },
+    }
   },
   data() {
     return {
