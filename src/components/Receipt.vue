@@ -112,9 +112,9 @@
           </div>
         </div>
 
-        <!-- 收據號碼 -->
+        <!-- 收據編碼 -->
         <div class="absolute" :style="positions.receiptNumber">
-          收據號碼 {{ receipt.receiptNumber }}
+          收據編碼 {{ receipt.receiptNumber }}
           <span v-if="isReissuedPrint">補發</span>
         </div>
 
@@ -193,7 +193,7 @@ export default {
             receiptDateStr: { top: '702px', left: '434px', fontSize: '14px' },
             unitTitle: { top: '403px', left: '434px', fontSize: '24px', fontWeight: '700' }, // 開立單位標題
             unitContent: { top: '441px', left: '434px', fontSize: '16px', lineHeight: '1.8', transform : 'scale(.5)', transformOrigin: 'top left' }, // 開立單位資料
-            receiptNumber: { top: '526px', left: '434px', fontSize: '14px' }, // 收據號碼
+            receiptNumber: { top: '526px', left: '434px', fontSize: '14px' }, // 收據編碼
             bigChapter: { top: '441px', left: '658px' }, // 大章
           }
 
@@ -215,7 +215,7 @@ export default {
             receiptDateStr: { top: '331px', left: '397px', fontSize: '14px' },
             unitTitle: { top: '30px', left: '397px', fontSize: '24px', fontWeight: '700' }, // 開立單位標題
             unitContent: { top: '68px', left: '397px', fontSize: '16px', lineHeight: '1.8', transform : 'scale(.5)', transformOrigin: 'top left' }, // 開立單位資料
-            receiptNumber: { top: '153px', left: '397px', fontSize: '14px' }, // 收據號碼
+            receiptNumber: { top: '153px', left: '397px', fontSize: '14px' }, // 收據編碼
             bigChapter: { top: '68px', left: '658px' }, // 大章
           }
 

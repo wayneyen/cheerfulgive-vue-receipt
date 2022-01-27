@@ -63,7 +63,7 @@ export default {
           receiptAmountCovInWords: '叁千元', //捐款金額轉大寫
           byYearItemStr: '1/2000,1/1000,1/60', //年開資料
           receiptDateStr: "2021-12-13", //收據開立日期
-          receiptNumber: "OPG21124466", //收據號碼
+          receiptNumber: "OPG21124466", //收據編碼
           ownerName: "寄件人名稱",
           ownerAddress: "寄件人地址",
           ownerPhone: "寄件人電話",
