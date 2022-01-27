@@ -47,7 +47,6 @@ export default {
         "mailingAddress": "台北市中山北路123號",
         "contactNumber": "0919246398",
         "taxIdNumber": "12345678",
-        "registrationNumber": "123",
         "corporateNumber": "123",
         "salutation": "先生",
         "gratitude": "謹此銘謝",
@@ -72,7 +71,8 @@ export default {
           receipientAddressStr: "收件人郵遞區號+縣市+鄉鎮市區",
           receipientAddressStr1: "收件人地址1",
           receipientAddressStr2: "收件人地址2",
-          receiptTypeCode: "BY_TIME"
+          receiptTypeCode: "BY_TIME",
+          govProjectNumber: '台(84)內社字第8402001號',
         }
       ]
     }

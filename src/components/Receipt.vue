@@ -104,8 +104,8 @@
           <div v-if="receiptTemplate.taxIdNumber">
             統一編號：{{ receiptTemplate.taxIdNumber }}
           </div>
-          <div v-if="receiptTemplate.registrationNumber">
-            核准字號：{{ receiptTemplate.registrationNumber }}
+          <div v-if="receipt.govProjectNumber">
+            核准字號：{{ receipt.govProjectNumber }}
           </div>
           <div v-if="receiptTemplate.corporateNumber">
             法人證號：{{ receiptTemplate.corporateNumber }}
